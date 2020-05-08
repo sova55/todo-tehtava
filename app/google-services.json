@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "306791611647",
+    "firebase_url": "https://todo-tehtava.firebaseio.com",
+    "project_id": "todo-tehtava",
+    "storage_bucket": "todo-tehtava.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306791611647:android:6ff4fbed3ff1f4d65ae0ca",
+        "android_client_info": {
+          "package_name": "com.labra.mytodotehtava"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306791611647-u2rak9vtkm0j1s57r1fm35q8boss29ds.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCY9GByXz0aOQJYsMG6vlxuHJPLh0KYLlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306791611647-u2rak9vtkm0j1s57r1fm35q8boss29ds.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
