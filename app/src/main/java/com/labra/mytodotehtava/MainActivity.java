@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity  {
         nimi = findViewById(R.id.nimiKentta);
         selostus = findViewById(R.id.selostusKentta);
 
+        final String tehtyNappi = "Ei ole tehty";
+
 
         recyclerView = findViewById(R.id.list);
 
@@ -54,6 +58,8 @@ public class MainActivity extends AppCompatActivity  {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         fetch();
+
+
 
 
 
@@ -71,7 +77,9 @@ public class MainActivity extends AppCompatActivity  {
                 Map<String, Object> map = new HashMap<>();
                 map.put("id", databaseReference.getKey());
                 map.put("title", nimi.getText().toString());
+                map.put("onkoTehty", tehtyNappi);
                 map.put("desc", selostus.getText().toString());
+
                 databaseReference.setValue(map);
             }
 
@@ -80,6 +88,7 @@ public class MainActivity extends AppCompatActivity  {
 
     }
     private void fetch() {
+
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
                 .child("tehtavat");
@@ -92,12 +101,17 @@ public class MainActivity extends AppCompatActivity  {
                             public Model parseSnapshot(@NonNull DataSnapshot snapshot) {
                                 return new Model(snapshot.child("id").getValue().toString(),
                                         snapshot.child("title").getValue().toString(),
-                                        snapshot.child("desc").getValue().toString());
+                                        snapshot.child("desc").getValue().toString(),
+                                        snapshot.child("onkoTehty").getValue().toString());
+
+
+
                             }
                         })
                         .build();
 
         adapter = new FirebaseRecyclerAdapter<Model, ViewHolder>(options) {
+
             @Override
             public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
@@ -109,15 +123,29 @@ public class MainActivity extends AppCompatActivity  {
 
             @Override
             protected void onBindViewHolder(ViewHolder holder, final int position, Model model) {
+                final String otsikkoString = model.getmTitle();
+                final String descString = model.getmDesc();
+                final String idString = model.getmId();
+
+                holder.setNappi(model.getmTehty());
                 holder.setTxtTitle(model.getmTitle());
-                // holder.setTxtDesc(model.getmDesc());
 
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
                         Toast.makeText(MainActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+
+
+                        Intent intent = new Intent(MainActivity.this, Activity2.class);
+                        intent.putExtra("otsikkoTeksti", otsikkoString);
+                        intent.putExtra("descTeksti", descString);
+                        intent.putExtra("idTeksti", idString);
+                        startActivity(intent);
+
                     }
                 });
+
             }
 
         };

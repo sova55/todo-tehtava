@@ -5,16 +5,20 @@ package com.labra.mytodotehtava;
  */
 
 public class Model {
-    public String mId, mTitle, mDesc;
+    public String mId, mTitle, mDesc, mTehty;
 
     public Model() {
 
     }
 
-    public Model(String mId, String mTitle, String mDesc) {
+    public Model(String mId, String mTitle, String mDesc, String mTehty) {
         this.mId = mId;
         this.mTitle = mTitle;
         this.mDesc = mDesc;
+        this.mTehty = mTehty;
+
+
+
     }
 
     public String getmId() {
@@ -40,4 +44,8 @@ public class Model {
     public void setmDesc(String mDesc) {
         this.mDesc = mDesc;
     }
+
+    public String getmTehty() { return mTehty; }
+
+    public void setmTehty(String mTehty) {this.mTehty = mTehty;}
 }

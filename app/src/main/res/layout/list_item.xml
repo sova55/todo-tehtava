@@ -21,19 +21,25 @@
 
         <TextView
             android:id="@+id/list_title"
-            android:layout_width="match_parent"
+            android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:text="Title"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
-       <TextView
+        <TextView
             android:id="@+id/list_desc"
-            android:layout_width="match_parent"
+            android:layout_width="311dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="" />
+
+        <Button
+            android:id="@+id/button123"
+            android:layout_width="311dp"
+            android:layout_height="37dp"
+            android:text="Merkitse tehdyksi" />
 
     </LinearLayout>
 
